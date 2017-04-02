@@ -9,9 +9,9 @@ app.get('/', function (req, res) {
 
 
 
-        res.send(200);
+        res.sendStatus(200);
     } else {
-        res.send(400);
+        res.sendStatus(400);
     }
 });
 
