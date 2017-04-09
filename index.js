@@ -28,11 +28,16 @@ function parseBody(res, body) {
     const result = {};
 
     result.playerName = $('.header-masthead').text();
-    result.level = $('.player-level', '.masthead-player').children().first().text();
-    result.levelFrameImageUrl = getContentBetweenParenthesis($('.player-level', '.masthead-player').css('background-image'));
-    result.rankImageUrl = getContentBetweenParenthesis($('.player-rank', '.masthead-player').css('background-image'));
 
-    res.json(result);
+    if (result.playerName.toString().length > 0) {
+        result.level = $('.player-level', '.masthead-player').children().first().text();
+        result.levelFrameImageUrl = getContentBetweenParenthesis($('.player-level', '.masthead-player').css('background-image'));
+        result.rankImageUrl = getContentBetweenParenthesis($('.player-rank', '.masthead-player').css('background-image'));
+
+        res.json(result);
+    } else {
+        res.sendStatus(404);
+    }
 }
 
 function getContentBetweenParenthesis(input) {
